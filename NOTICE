@@ -1,0 +1,6 @@
+TradingView Lightweight Charts(TM)
+Copyright (c) 2025 TradingView, Inc. https://www.tradingview.com/
+Apache License 2.0 (public/vendor/LICENSE-lightweight-charts.txt)
+
+src/quarters.js and the quarter card in public/js/score.js follow the approach of
+trader-analyst in day-trader-skill (MIT), https://github.com/Jakeschincariol/day-trader-skill

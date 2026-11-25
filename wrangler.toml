@@ -1,0 +1,29 @@
+name = "phone"
+main = "src/worker.js"
+compatibility_date = "2025-01-01"
+# 대시보드에서 추가한 일반 변수가 배포 때 지워지지 않게 한다. (비밀 값은 원래 안 지워진다.)
+keep_vars = true
+
+[assets]
+directory = "./public"
+binding = "ASSETS"
+# 로그인 전에도 화면 틀(HTML/JS/CSS)은 열린다. 비밀은 전부 Worker 안에만 있다.
+run_worker_first = ["/api/*"]
+
+# 관심종목·키워드·메모를 기기 사이에 맞추기 위한 작은 저장소. 따로 만들 것 없이 배포하면 같이 생긴다.
+[[durable_objects.bindings]]
+name = "STORE"
+class_name = "Store"
+
+# 실시간 체결 중계 (Finnhub WebSocket 하나를 여러 화면이 나눠 쓴다).
+[[durable_objects.bindings]]
+name = "LIVE"
+class_name = "Live"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["Store"]
+
+[[migrations]]
+tag = "v2"
+new_sqlite_classes = ["Live"]
